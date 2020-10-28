@@ -1,0 +1,19 @@
+{
+  "name": "dependency-analyzer",
+  "version": "1.0.0",
+  "description": "an depency analizer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nperez9/dependency-analizer.git"
+  },
+  "author": "Nicolas Agustin Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nperez9/dependency-analizer/issues"
+  },
+  "homepage": "https://github.com/nperez9/dependency-analizer#readme"
+}
