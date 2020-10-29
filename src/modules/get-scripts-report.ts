@@ -1,15 +1,22 @@
-import { SiteContent } from "../interfaces";
+import { SiteContent, ScriptReport, ScriptBySite } from '../interfaces';
 import { JSDOM } from 'jsdom';
 
 function sanetizeScript(script: string): string {
-  // do some sanetization
-  return script;
+  let scriptString = '';
+  const auxScript = script.split('/');
+  scriptString = auxScript[auxScript.length - 1].substr(0);
+  
+  if (scriptString.indexOf('?') !== -1) {
+    scriptString = scriptString.substr(0, scriptString.indexOf('?'))
+  }
+
+  return scriptString;
 }
 
-export const getScriptsReport = (sitesContent: SiteContent[]): any => {
+export const getScriptsReport = (sitesContent: SiteContent[]): ScriptReport  => {
   const scriptsCounter = {} as any;
 
-  const superScripts = sitesContent.map(({ name, content }) => {
+  const scriptsBySite = sitesContent.map(({ name, content }): ScriptBySite => {
     const report = { name, scriptsList: new Array<string>() };
     const { window } = new JSDOM(content);
 
@@ -19,12 +26,15 @@ export const getScriptsReport = (sitesContent: SiteContent[]): any => {
         continue;
       }
       const sanetizedScript = sanetizeScript(scripts[i].src);
+      
       report.scriptsList.push(sanetizedScript);
-      scriptsCounter[sanetizedScript] ++;
+      
+      scriptsCounter[sanetizedScript] = (scriptsCounter[sanetizedScript]) 
+       ? scriptsCounter[sanetizedScript] + 1 : 1;
     }
 
     return report;
   });
 
-  return { superScripts, scriptsCounter };
+  return { scriptsBySite, scriptsCounter };
 };

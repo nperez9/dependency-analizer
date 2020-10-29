@@ -1,6 +1,6 @@
 import { getDataFromCsv } from './modules/get-data-from-csv';
 import { getSitesContent } from './modules/get-sites-data';
-import { showContentLenghtData } from './modules/show-data';
+import { showContentLenghtData, showScriptsSites, showScriptsCounter } from './modules/show-data';
 import { getScriptsReport } from './modules/get-scripts-report';
 
 export default async function main(): Promise<void> {
@@ -9,8 +9,9 @@ export default async function main(): Promise<void> {
     const sitesContent = await getSitesContent(sites);
     showContentLenghtData(sitesContent);
 
-    const scriptsReport = getScriptsReport(sitesContent);
-    console.info(scriptsReport);
+    const { scriptsBySite, scriptsCounter } = getScriptsReport(sitesContent);
+    showScriptsSites(scriptsBySite);
+    showScriptsCounter(scriptsCounter);
   } catch (e) {
     console.error('Error running the process', e);
   }
