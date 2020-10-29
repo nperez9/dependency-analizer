@@ -1,12 +1,7 @@
-import { getFileContent } from '../utils';
+import { Site } from '../interfaces';
 import csvToJson from 'csvtojson';
 
-export const getDataFromCsv = async (): Promise<any> => {
-  try {
-    const jsonArray = await csvToJson().fromFile('data/websites.csv');
+export const getDataFromCsv = async (): Promise<[Site]> => {
+    const jsonArray = await csvToJson().fromFile('data/websites.csv') as [Site];
     return jsonArray;
-  } catch (e) {
-    console.error(e.message);
-  }
-
 }
