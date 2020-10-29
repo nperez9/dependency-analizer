@@ -1,7 +1,7 @@
 Dependency Analyzer:
 
 How to run?
-
+Requires Node +12
 npm install
 npm start
 

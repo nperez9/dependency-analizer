@@ -1,0 +1,24 @@
+{
+  "cache": false,
+  "check-coverage": false,
+  "extension": [
+    ".ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/modules/*.ts"
+  ],
+  "exclude": [
+    "coverage/**",
+    ".nyc_output/**",
+    "node_modules/**",
+    "**/*.spec.ts"
+  ],
+  "sourceMap": true,
+  "reporter": [
+    "text",
+    "text-summary"
+  ],
+  "all": true,
+  "instrument": true
+}
